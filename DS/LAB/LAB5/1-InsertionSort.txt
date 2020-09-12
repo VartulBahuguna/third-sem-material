@@ -1,0 +1,86 @@
+#include <stdio.h>
+void sort(int *a,int n)
+{
+
+    for(int i = 1; i <n; ++i)
+    {
+        int j = i-1;
+        int min = a[i];
+        while(j>=0 && a[j] > min)
+        {
+            a[j+1] = a[j];
+            j--;
+        }
+        a[j+1] = min;
+        
+    }
+}
+
+int main() {
+    int ar[] = {46,20,11,35,40};
+    int a[] = {38, 21, 67,12, 9};
+    int n = sizeof(ar)/sizeof(ar[0]);
+    int size = sizeof(a)/sizeof(ar[0]);
+
+    sort(a,size);
+    for(int i = 1; i <n; ++i)
+    {
+        int j = i-1;
+        int min = ar[i];
+        while(j>=0 && ar[j] > min)
+        {
+            ar[j+1] = ar[j];
+            j--;
+        }
+        ar[j+1] = min;
+    }
+    
+    for(int i = 0; i<n; ++i)
+    {
+        printf("%d ", ar[i]);
+    }
+    printf("\n");
+    for(int i = 0; i<n; ++i)
+    {
+        printf("%d ", a[i]);
+    }
+    
+}
+
+//-----------QUIZ-----------//
+#include <stdio.h>
+void sort(int *a,int n)
+{
+
+    for(int i = 1; i <n; ++i)
+    {
+        int j = i-1;
+        int min = a[i];
+        while(j>=0 && a[j] > min)
+        {
+            a[j+1] = a[j];
+            j--;
+        }
+        a[j+1] = min;
+        
+    }
+}
+
+int main() {
+    int a[100], n;
+ 
+    scanf("%d",&n);
+    for(int i = 0; i<n; ++i)
+    {
+        scanf("%d", &a[i]);
+    }
+
+    sort(a,n);
+   
+    printf("Sorted elements: ");
+    for(int i = 0; i<n; ++i)
+    {
+        printf("%d ", a[i]);
+    }
+    
+}

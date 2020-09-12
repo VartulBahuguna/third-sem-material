@@ -1,0 +1,151 @@
+#include <stdio.h>
+#include<conio.h>
+//#include<stdin.h>
+#define max 100
+
+void ins(int* a, int pos, int ele, int n)
+{
+    if(n > max)
+    {
+        printf("!!!!!!!OVERFLOW!!!!!");
+        return;
+    }
+    if(pos > n)
+    {
+        printf("\n!!!!!CANNOT INSERT!!!!!");
+        return;
+    }
+
+
+    for(int i = n-2; i >= pos-1; --i)
+        a[i+1] = a[i];
+
+    a[pos - 1] = ele; 
+    printf("\nElement Inserted");   
+}
+
+void del(int* a, int pos, int n)
+{
+    if(n <= 0)
+    {
+        printf("!!!!!!!UnderFlow!!!!!");
+        return;
+    }
+    if(pos <= 0)
+    {
+        printf("\n!!!!!CANNOT DELETE!!!!!");
+        return;
+    }
+    
+    for(int i = pos - 1; i < (n-1); ++i)
+    {
+        a[i] = a[i+1];
+    }
+
+    a[n-1] = 0;
+    printf("\nElement Deleted\n");
+
+}
+
+void display(int* a, int n)
+{
+    printf("\n\nResultant a is: \n\n");
+   
+    for(int i = 0; i < n; i++) 
+        printf("%d  ", a[i]);
+}
+
+
+int main() {
+    
+    int ar[100], pos, n, choice, ele, size,ch, flush;
+    int c;
+    for(int i = 0; i < 100; ++i)
+    {
+        ar[i] = 0;
+    }
+
+    printf("\n\nEnter number of elements in a:");
+    scanf("%d", &n);
+    size = n;
+    printf("\n\nEnter the elements elements :\n");
+    for(int i = 0; i < n; ++i)
+    {
+        scanf("%d", &ar[i]);
+    }
+
+    do
+    {    
+       // clrscr();
+        printf("\nWhat do you want to do:\n");
+        printf("1. Insertion\n2. Deletion\n3. Display\n");
+        scanf("%d", &choice);
+
+        switch(choice)
+        {
+            case 1 : 
+                  //  clrscr();
+                    size++;
+                    printf("\nEnter the element: ");
+                    scanf("%d",&ele);
+                    printf("\n1. Insert at first pos. \n2. Insert last. \n3. Insert middle.\n");
+                    scanf("%d", &ch);
+                    if(ch == 1)
+                    {
+                        ins(ar, 1, ele, size);
+                    }
+                    else if(ch == 2)
+                    {
+                        ins(ar, size, ele,size);
+                    }
+                    else if(ch == 3)
+                    {
+                        printf("\nEnter the position of element to be inserted : ");
+                        scanf("%d", &pos);
+                        ins(ar, pos, ele,size);
+                    }
+                    break;
+                    
+            case 2 : 
+                 //   clrscr();
+                    printf("\n1. Insert at first pos. \n2. Insert last. \n3. Insert middle.\n");
+                    scanf("%d", &ch);
+                    if(ch == 1)
+                    {
+                        del(ar, 1, size);
+                    }
+                    else if(ch == 2)
+                    {
+                        del(ar, size,size);
+                    }
+                    else if(ch == 3)
+                    {
+                        printf("\nEnter the position of element to be deleted : ");
+                        scanf("%d", &pos);
+                        del(ar, pos,size);
+                    }
+                    size--;
+                    break;
+
+            case 3 :
+                //    clrscr(); 
+                    display(ar,size);
+                    break;
+
+            default :
+               //     clrscr(); 
+                    printf("\nWrong choice ");
+                    break;
+        }
+       // clrscr();
+        printf("\nWant to try again (1/2): ");
+       // flush = fflush(stdin);
+        scanf("%d", &c);
+        
+        
+    }while(c == 1);
+    display(ar,size);
+
+    return 0;
+
+}
